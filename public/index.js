@@ -69,7 +69,7 @@ return /******/ (function(modules) { // webpackBootstrap
 /******/
 /******/
 /******/ 	var hotApplyOnUpdate = true;
-/******/ 	var hotCurrentHash = "e066994429010ad7a4af"; // eslint-disable-line no-unused-vars
+/******/ 	var hotCurrentHash = "06f3d55e97f18178a09e"; // eslint-disable-line no-unused-vars
 /******/ 	var hotRequestTimeout = 10000;
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentChildModule; // eslint-disable-line no-unused-vars
@@ -12278,130 +12278,157 @@ var Bottom = external___amd___create_react_class___commonjs___create_react_class
 
 
 var About = external___amd___create_react_class___commonjs___create_react_class___commonjs2___create_react_class___root___create_react_class___default()({
-  displayName: "About",
+    displayName: "About",
 
-  //@@viewOn:mixins
-  mixins: [external___amd___uu5g04___commonjs___uu5g04___commonjs2___uu5g04___root___uu5g04___default.a.Common.BaseMixin, external___amd___uu5g04___commonjs___uu5g04___commonjs2___uu5g04___root___uu5g04___default.a.Common.ElementaryMixin, external___amd___uu5g04___commonjs___uu5g04___commonjs2___uu5g04___root___uu5g04___default.a.Common.RouteMixin, external___amd___uu5g04___commonjs___uu5g04___commonjs2___uu5g04___root___uu5g04___default.a.Forms.FormMixin],
-  //@@viewOff:mixins
+    //@@viewOn:mixins
+    mixins: [external___amd___uu5g04___commonjs___uu5g04___commonjs2___uu5g04___root___uu5g04___default.a.Common.BaseMixin, external___amd___uu5g04___commonjs___uu5g04___commonjs2___uu5g04___root___uu5g04___default.a.Common.ElementaryMixin, external___amd___uu5g04___commonjs___uu5g04___commonjs2___uu5g04___root___uu5g04___default.a.Common.RouteMixin, external___amd___uu5g04___commonjs___uu5g04___commonjs2___uu5g04___root___uu5g04___default.a.Forms.FormMixin],
+    //@@viewOff:mixins
 
-  //@@viewOn:statics
-  statics: {
-    tagName: ns.tag("About"),
-    classNames: {
-      main: ns.css("about")
+    //@@viewOn:statics
+    statics: {
+        tagName: ns.tag("About"),
+        classNames: {
+            main: ns.css("about")
+        }
+    },
+    //@@viewOff:statics
+
+    //@@viewOn:propTypes
+
+    //@@viewOff:propTypes
+
+    //@@viewOn:getDefaultProps
+    //@@viewOff:getDefaultProps
+
+    //@@viewOn:standardComponentLifeCycle
+    //@@viewOff:standardComponentLifeCycle
+
+    //@@viewOn:interface
+    //@@viewOff:interface
+
+    //@@viewOn:overridingMethods
+    //@@viewOff:overridingMethods
+
+    //@@viewOn:componentSpecificHelpers
+
+    _save: function _save(opt) {
+        var _this = this;
+
+        console.log('Values:', opt.values);
+        var id = external___amd___uu5g04___commonjs___uu5g04___commonjs2___uu5g04___root___uu5g04___default.a.Common.Tools.generateUUID();
+
+        this._row.insertChild(external___amd___react___commonjs___react___commonjs2___react___root___react___default.a.createElement(
+            external___amd___uu5g04___commonjs___uu5g04___commonjs2___uu5g04___root___uu5g04___default.a.Bricks.Div,
+            {
+                id: id
+            },
+            external___amd___react___commonjs___react___commonjs2___react___root___react___default.a.createElement(external___amd___uu5g04___commonjs___uu5g04___commonjs2___uu5g04___root___uu5g04___default.a.Bricks.Panel, {
+                header: opt.values.name, content: ["category: ", opt.values.category, ", ", "number of items: ", opt.values.numberOfItems] }),
+            external___amd___react___commonjs___react___commonjs2___react___root___react___default.a.createElement(external___amd___uu5g04___commonjs___uu5g04___commonjs2___uu5g04___root___uu5g04___default.a.Forms.Checkbox, {
+                value: false,
+                label: "Sold Out",
+                size: "m"
+            }),
+            external___amd___react___commonjs___react___commonjs2___react___root___react___default.a.createElement(external___amd___uu5g04___commonjs___uu5g04___commonjs2___uu5g04___root___uu5g04___default.a.Bricks.Button, {
+                colorSchema: "danger",
+                onClick: function onClick() {
+                    return _this._row.deleteChild(id);
+                },
+                content: "Delete Column"
+            }),
+            external___amd___react___commonjs___react___commonjs2___react___root___react___default.a.createElement(external___amd___uu5g04___commonjs___uu5g04___commonjs2___uu5g04___root___uu5g04___default.a.Bricks.Button, {
+                colorSchema: "orange",
+                onClick: function onClick() {
+                    return _this._row.editItem(id);
+                },
+                content: "Edit"
+            })
+        ));
+        this.reset();
+    },
+    editItem: function editItem(id) {
+        console.log(id);
+    },
+    _submit: function _submit() {
+        if (this.isValid()) {
+            var formData = this.getValues();
+
+            if (formData) {
+                console.log(formData);
+            }
+        }
+    },
+
+
+    //@@viewOff:componentSpecificHelpers
+
+    //@@viewOn:render
+    render: function render() {
+        var _this2 = this;
+
+        return external___amd___react___commonjs___react___commonjs2___react___root___react___default.a.createElement(
+            external___amd___uu5g04___commonjs___uu5g04___commonjs2___uu5g04___root___uu5g04___default.a.Bricks.Container,
+            null,
+            external___amd___react___commonjs___react___commonjs2___react___root___react___default.a.createElement(
+                external___amd___uu5g04___commonjs___uu5g04___commonjs2___uu5g04___root___uu5g04___default.a.Forms.Form,
+                {
+                    onSave: function onSave(opt) {
+                        return _this2._save(opt);
+                    },
+                    header: external___amd___react___commonjs___react___commonjs2___react___root___react___default.a.createElement(external___amd___uu5g04___commonjs___uu5g04___commonjs2___uu5g04___root___uu5g04___default.a.Bricks.Box, { content: "Fill the form to add new item", colorSchema: "green",
+                        className: "font-size-m" })
+                },
+                external___amd___react___commonjs___react___commonjs2___react___root___react___default.a.createElement(
+                    external___amd___uu5g04___commonjs___uu5g04___commonjs2___uu5g04___root___uu5g04___default.a.Bricks.Column,
+                    null,
+                    external___amd___react___commonjs___react___commonjs2___react___root___react___default.a.createElement(external___amd___uu5g04___commonjs___uu5g04___commonjs2___uu5g04___root___uu5g04___default.a.Forms.Text, {
+                        label: "Name",
+                        name: "name",
+                        required: true
+                    }),
+                    external___amd___react___commonjs___react___commonjs2___react___root___react___default.a.createElement(external___amd___uu5g04___commonjs___uu5g04___commonjs2___uu5g04___root___uu5g04___default.a.Forms.Number, {
+                        label: "Number of items",
+                        name: "numberOfItems",
+                        size: "m",
+                        min: 0,
+                        max: 3000,
+                        step: 1,
+                        required: true
+                    }),
+                    external___amd___react___commonjs___react___commonjs2___react___root___react___default.a.createElement(
+                        external___amd___uu5g04___commonjs___uu5g04___commonjs2___uu5g04___root___uu5g04___default.a.Forms.Select,
+                        {
+                            label: "Category",
+                            name: "category",
+                            size: "m",
+                            required: true
+                        },
+                        external___amd___react___commonjs___react___commonjs2___react___root___react___default.a.createElement(external___amd___uu5g04___commonjs___uu5g04___commonjs2___uu5g04___root___uu5g04___default.a.Forms.Select.Option, { value: "Man" }),
+                        external___amd___react___commonjs___react___commonjs2___react___root___react___default.a.createElement(external___amd___uu5g04___commonjs___uu5g04___commonjs2___uu5g04___root___uu5g04___default.a.Forms.Select.Option, { value: "Woman" }),
+                        external___amd___react___commonjs___react___commonjs2___react___root___react___default.a.createElement(external___amd___uu5g04___commonjs___uu5g04___commonjs2___uu5g04___root___uu5g04___default.a.Forms.Select.Option, { value: "Kids" })
+                    )
+                ),
+                external___amd___react___commonjs___react___commonjs2___react___root___react___default.a.createElement(external___amd___uu5g04___commonjs___uu5g04___commonjs2___uu5g04___root___uu5g04___default.a.Forms.Controls, null)
+            ),
+            external___amd___react___commonjs___react___commonjs2___react___root___react___default.a.createElement(
+                external___amd___uu5g04___commonjs___uu5g04___commonjs2___uu5g04___root___uu5g04___default.a.Bricks.ButtonGroup,
+                { size: "m", colorSchema: "default" },
+                external___amd___react___commonjs___react___commonjs2___react___root___react___default.a.createElement(external___amd___uu5g04___commonjs___uu5g04___commonjs2___uu5g04___root___uu5g04___default.a.Bricks.Button, { content: "Man", onClick: function onClick() {
+                        return _this2._submit();
+                    } }),
+                external___amd___react___commonjs___react___commonjs2___react___root___react___default.a.createElement(external___amd___uu5g04___commonjs___uu5g04___commonjs2___uu5g04___root___uu5g04___default.a.Bricks.Button, { content: "Woman" }),
+                external___amd___react___commonjs___react___commonjs2___react___root___react___default.a.createElement(external___amd___uu5g04___commonjs___uu5g04___commonjs2___uu5g04___root___uu5g04___default.a.Bricks.Button, { content: "Kids" })
+            ),
+            external___amd___react___commonjs___react___commonjs2___react___root___react___default.a.createElement(
+                external___amd___uu5g04___commonjs___uu5g04___commonjs2___uu5g04___root___uu5g04___default.a.Bricks.Div,
+                this.getMainPropsToPass(),
+                external___amd___react___commonjs___react___commonjs2___react___root___react___default.a.createElement(external___amd___uu5g04___commonjs___uu5g04___commonjs2___uu5g04___root___uu5g04___default.a.Bricks.Row, { ref_: function ref_(row) {
+                        return _this2._row = row;
+                    }, dynamic: true })
+            )
+        );
     }
-  },
-  //@@viewOff:statics
-
-  //@@viewOn:propTypes
-
-  //@@viewOff:propTypes
-
-  //@@viewOn:getDefaultProps
-  //@@viewOff:getDefaultProps
-
-  //@@viewOn:standardComponentLifeCycle
-  //@@viewOff:standardComponentLifeCycle
-
-  //@@viewOn:interface
-  //@@viewOff:interface
-
-  //@@viewOn:overridingMethods
-  //@@viewOff:overridingMethods
-
-  //@@viewOn:componentSpecificHelpers
-
-  _onSave: function _onSave(component, values) {
-    var _this = this;
-
-    console.log('Values:', values);
-    var id = external___amd___uu5g04___commonjs___uu5g04___commonjs2___uu5g04___root___uu5g04___default.a.Common.Tools.generateUUID();
-
-    this._row.insertChild(external___amd___react___commonjs___react___commonjs2___react___root___react___default.a.createElement(
-      external___amd___uu5g04___commonjs___uu5g04___commonjs2___uu5g04___root___uu5g04___default.a.Bricks.Div,
-      {
-        id: id
-      },
-      external___amd___react___commonjs___react___commonjs2___react___root___react___default.a.createElement(external___amd___uu5g04___commonjs___uu5g04___commonjs2___uu5g04___root___uu5g04___default.a.Bricks.Panel, {
-        header: values.name, content: ["category: ", values.category, ", ", "number of items: ", values.numberOfItems] }),
-      external___amd___react___commonjs___react___commonjs2___react___root___react___default.a.createElement(external___amd___uu5g04___commonjs___uu5g04___commonjs2___uu5g04___root___uu5g04___default.a.Bricks.Button, {
-        colorSchema: "danger",
-        onClick: function onClick() {
-          return _this._row.deleteChild(id);
-        },
-        content: "Delete Column"
-      })
-    ));
-  },
-  _onCancel: function _onCancel(component) {
-    alert('Cancel pressed');
-    return this;
-  },
-
-
-  //@@viewOff:componentSpecificHelpers
-
-  //@@viewOn:render
-  render: function render() {
-    var _this2 = this;
-
-    return external___amd___react___commonjs___react___commonjs2___react___root___react___default.a.createElement(
-      external___amd___uu5g04___commonjs___uu5g04___commonjs2___uu5g04___root___uu5g04___default.a.Bricks.Container,
-      null,
-      external___amd___react___commonjs___react___commonjs2___react___root___react___default.a.createElement(external___amd___uu5g04___commonjs___uu5g04___commonjs2___uu5g04___root___uu5g04___default.a.Bricks.Header, { level: 3, content: "Add new item" }),
-      external___amd___react___commonjs___react___commonjs2___react___root___react___default.a.createElement(
-        external___amd___uu5g04___commonjs___uu5g04___commonjs2___uu5g04___root___uu5g04___default.a.Forms.Form,
-        {
-          header: external___amd___react___commonjs___react___commonjs2___react___root___react___default.a.createElement(external___amd___uu5g04___commonjs___uu5g04___commonjs2___uu5g04___root___uu5g04___default.a.Bricks.Box, { content: "fill the form to create new item", colorSchema: "green",
-            className: "font-size-m" }),
-          onSave: function onSave(_ref) {
-            var component = _ref.component,
-                values = _ref.values;
-            return _this2._onSave(component, values);
-          },
-          onCancel: function onCancel(_ref2) {
-            var component = _ref2.component;
-            return _this2._onCancel(component);
-          }
-        },
-        external___amd___react___commonjs___react___commonjs2___react___root___react___default.a.createElement(external___amd___uu5g04___commonjs___uu5g04___commonjs2___uu5g04___root___uu5g04___default.a.Forms.Text, {
-          label: "Name",
-          name: "name",
-          required: true
-        }),
-        external___amd___react___commonjs___react___commonjs2___react___root___react___default.a.createElement(external___amd___uu5g04___commonjs___uu5g04___commonjs2___uu5g04___root___uu5g04___default.a.Forms.Number, {
-          label: "Number of items",
-          name: "numberOfItems",
-          size: "m",
-          min: 0,
-          max: 3000,
-          step: 1,
-          required: true
-        }),
-        external___amd___react___commonjs___react___commonjs2___react___root___react___default.a.createElement(
-          external___amd___uu5g04___commonjs___uu5g04___commonjs2___uu5g04___root___uu5g04___default.a.Forms.Select,
-          {
-            label: "Category",
-            name: "category",
-            size: "m",
-            required: true
-          },
-          external___amd___react___commonjs___react___commonjs2___react___root___react___default.a.createElement(external___amd___uu5g04___commonjs___uu5g04___commonjs2___uu5g04___root___uu5g04___default.a.Forms.Select.Option, { value: "Man" }),
-          external___amd___react___commonjs___react___commonjs2___react___root___react___default.a.createElement(external___amd___uu5g04___commonjs___uu5g04___commonjs2___uu5g04___root___uu5g04___default.a.Forms.Select.Option, { value: "Woman" }),
-          external___amd___react___commonjs___react___commonjs2___react___root___react___default.a.createElement(external___amd___uu5g04___commonjs___uu5g04___commonjs2___uu5g04___root___uu5g04___default.a.Forms.Select.Option, { value: "Kids" })
-        ),
-        external___amd___react___commonjs___react___commonjs2___react___root___react___default.a.createElement(external___amd___uu5g04___commonjs___uu5g04___commonjs2___uu5g04___root___uu5g04___default.a.Forms.Controls, null)
-      ),
-      external___amd___react___commonjs___react___commonjs2___react___root___react___default.a.createElement(
-        external___amd___uu5g04___commonjs___uu5g04___commonjs2___uu5g04___root___uu5g04___default.a.Bricks.Div,
-        this.getMainPropsToPass(),
-        external___amd___react___commonjs___react___commonjs2___react___root___react___default.a.createElement(external___amd___uu5g04___commonjs___uu5g04___commonjs2___uu5g04___root___uu5g04___default.a.Bricks.Row, { ref_: function ref_(row) {
-            return _this2._row = row;
-          }, dynamic: true })
-      )
-    );
-  }
-  //@@viewOff:render
+    //@@viewOff:render
 
 });
 
