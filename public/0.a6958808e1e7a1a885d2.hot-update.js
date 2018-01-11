@@ -1,9 +1,9 @@
 webpackHotUpdate_name_(0,{
 
 /***/ "./index.js":
-/*!*******************************!*\
-  !*** ./index.js + 10 modules ***!
-  \*******************************/
+/*!******************************!*\
+  !*** ./index.js + 9 modules ***!
+  \******************************/
 /*! exports provided: render */
 /*! all exports used */
 /*! ModuleConcatenation bailout: Module is referenced from these modules with unsupported syntax: ../.tmp/index.js (referenced with cjs require) */
@@ -634,101 +634,6 @@ var Bottom = external___amd___create_react_class___commonjs___create_react_class
 });
 
 /* harmony default export */ var core_bottom = (Bottom);
-// CONCATENATED MODULE: ./bricks/item/column.js
-var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
-
-
-
-
-
-
-
-
-
-var Column = external___amd___create_react_class___commonjs___create_react_class___commonjs2___create_react_class___root___create_react_class___default()({
-  displayName: "Column",
-
-
-  //@@viewOn:mixins
-  mixins: [external___amd___uu5g04___commonjs___uu5g04___commonjs2___uu5g04___root___uu5g04___default.a.Common.BaseMixin, external___amd___uu5g04___commonjs___uu5g04___commonjs2___uu5g04___root___uu5g04___default.a.Common.ElementaryMixin],
-  //@@viewOff:mixins
-
-  //@@viewOn:statics
-  statics: {
-    tagName: ns.tag("About.Column"),
-    classNames: {
-      main: ns.css("about-column")
-    }
-  },
-  //@@viewOff:statics
-
-  //@@viewOn:propTypes
-  propTypes: {
-    action: external___amd___prop_types___commonjs___prop_types___commonjs2___prop_types___root___prop_types___default.a.oneOf(["disabled", "hidden"]).isRequired,
-    onDelete: external___amd___prop_types___commonjs___prop_types___commonjs2___prop_types___root___prop_types___default.a.func.isRequired
-  },
-  //@@viewOff:propTypes
-
-  //@@viewOn:getDefaultProps
-  //@@viewOff:getDefaultProps
-
-  //@@viewOn:standardComponentLifeCycle
-  getInitialState: function getInitialState() {
-    return {
-      active: false
-    };
-  },
-
-  //@@viewOff:standardComponentLifeCycle
-
-  //@@viewOn:interface
-  //@@viewOff:interface
-
-  //@@viewOn:overridingMethods
-  //@@viewOff:overridingMethods
-
-  //@@viewOn:componentSpecificHelpers
-  _handleButtonClick: function _handleButtonClick() {
-    this.setState(function (prevState) {
-      return {
-        active: !prevState.active
-      };
-    });
-  },
-  _buildAttrs: function _buildAttrs() {
-    var props = {};
-    // this.props.action -> disabled || hidden
-    props[this.props.action] = this.state.active;
-    // pros.disabled = this.state.active
-    // pros.hidden = this.state.active
-    return props;
-  },
-
-  //@@viewOff:componentSpecificHelpers
-
-  //@@viewOn:render
-  render: function render() {
-    /**
-     * Tlačítko pro smazání volá předaný callback přes vlastnost (props) onDelete
-     */
-    return external___amd___react___commonjs___react___commonjs2___react___root___react___default.a.createElement(
-      external___amd___uu5g04___commonjs___uu5g04___commonjs2___uu5g04___root___uu5g04___default.a.Bricks.Column,
-      _extends({ colWidth: "xs4" }, this.getMainPropsToPass()),
-      external___amd___react___commonjs___react___commonjs2___react___root___react___default.a.createElement(external___amd___uu5g04___commonjs___uu5g04___commonjs2___uu5g04___root___uu5g04___default.a.Bricks.Button, { onClick: this._handleButtonClick }),
-      external___amd___react___commonjs___react___commonjs2___react___root___react___default.a.createElement(external___amd___uu5g04___commonjs___uu5g04___commonjs2___uu5g04___root___uu5g04___default.a.Bricks.Paragraph, this._buildAttrs()),
-      external___amd___react___commonjs___react___commonjs2___react___root___react___default.a.createElement(external___amd___uu5g04___commonjs___uu5g04___commonjs2___uu5g04___root___uu5g04___default.a.Bricks.Paragraph, this._buildAttrs()),
-      external___amd___react___commonjs___react___commonjs2___react___root___react___default.a.createElement(external___amd___uu5g04___commonjs___uu5g04___commonjs2___uu5g04___root___uu5g04___default.a.Bricks.Button, {
-        colorSchema: "danger",
-        onClick: this.props.onDelete,
-        content: "Sma\u017E m\u011B"
-      })
-    );
-  }
-  //@@viewOff:render
-
-});
-
-/* harmony default export */ var column = (Column);
 // CONCATENATED MODULE: ./core/about.js
 
 
@@ -755,6 +660,7 @@ var About = external___amd___create_react_class___commonjs___create_react_class_
   //@@viewOff:statics
 
   //@@viewOn:propTypes
+
   //@@viewOff:propTypes
 
   //@@viewOn:getDefaultProps
@@ -770,23 +676,29 @@ var About = external___amd___create_react_class___commonjs___create_react_class_
   //@@viewOff:overridingMethods
 
   //@@viewOn:componentSpecificHelpers
-  _addColumn: function _addColumn() {
+
+  _onSave: function _onSave(component, values) {
     var _this = this;
 
+    alert('Saving component (values are in console)');
+    console.log('Values:', values);
     var id = external___amd___uu5g04___commonjs___uu5g04___commonjs2___uu5g04___root___uu5g04___default.a.Common.Tools.generateUUID();
 
-    this._row.insertChild(external___amd___react___commonjs___react___commonjs2___react___root___react___default.a.createElement(column, {
-      action: "disabled",
-      id: id,
-      onDelete: function onDelete() {
-        _this._row.deleteChild(id);
-      }
-    }));
-  },
-  _onSave: function _onSave(component, values) {
-    alert('Saving component (values are in console)');
-    console.log('Values:', values.name);
-    return this;
+    this._row.insertChild(external___amd___react___commonjs___react___commonjs2___react___root___react___default.a.createElement(
+      external___amd___uu5g04___commonjs___uu5g04___commonjs2___uu5g04___root___uu5g04___default.a.Bricks.Div,
+      {
+        id: id
+      },
+      external___amd___react___commonjs___react___commonjs2___react___root___react___default.a.createElement(external___amd___uu5g04___commonjs___uu5g04___commonjs2___uu5g04___root___uu5g04___default.a.Bricks.Panel, {
+        header: values.name, content: ["category: ", values.category, ", ", "number of items: ", values.numberOfItems] }),
+      external___amd___react___commonjs___react___commonjs2___react___root___react___default.a.createElement(external___amd___uu5g04___commonjs___uu5g04___commonjs2___uu5g04___root___uu5g04___default.a.Bricks.Button, {
+        colorSchema: "danger",
+        onClick: function onClick() {
+          return _this._row.deleteChild(id);
+        },
+        content: "Delete Column"
+      })
+    ));
   },
   _onCancel: function _onCancel(component) {
     alert('Cancel pressed');
@@ -841,20 +753,15 @@ var About = external___amd___create_react_class___commonjs___create_react_class_
             size: "m",
             required: true
           },
-          external___amd___react___commonjs___react___commonjs2___react___root___react___default.a.createElement(external___amd___uu5g04___commonjs___uu5g04___commonjs2___uu5g04___root___uu5g04___default.a.Forms.Select.Option, { value: "Info" }),
-          external___amd___react___commonjs___react___commonjs2___react___root___react___default.a.createElement(external___amd___uu5g04___commonjs___uu5g04___commonjs2___uu5g04___root___uu5g04___default.a.Forms.Select.Option, { value: "Bug" }),
-          external___amd___react___commonjs___react___commonjs2___react___root___react___default.a.createElement(external___amd___uu5g04___commonjs___uu5g04___commonjs2___uu5g04___root___uu5g04___default.a.Forms.Select.Option, { value: "Task" })
+          external___amd___react___commonjs___react___commonjs2___react___root___react___default.a.createElement(external___amd___uu5g04___commonjs___uu5g04___commonjs2___uu5g04___root___uu5g04___default.a.Forms.Select.Option, { value: "Man" }),
+          external___amd___react___commonjs___react___commonjs2___react___root___react___default.a.createElement(external___amd___uu5g04___commonjs___uu5g04___commonjs2___uu5g04___root___uu5g04___default.a.Forms.Select.Option, { value: "Woman" }),
+          external___amd___react___commonjs___react___commonjs2___react___root___react___default.a.createElement(external___amd___uu5g04___commonjs___uu5g04___commonjs2___uu5g04___root___uu5g04___default.a.Forms.Select.Option, { value: "Kids" })
         ),
         external___amd___react___commonjs___react___commonjs2___react___root___react___default.a.createElement(external___amd___uu5g04___commonjs___uu5g04___commonjs2___uu5g04___root___uu5g04___default.a.Forms.Controls, null)
       ),
       external___amd___react___commonjs___react___commonjs2___react___root___react___default.a.createElement(
         external___amd___uu5g04___commonjs___uu5g04___commonjs2___uu5g04___root___uu5g04___default.a.Bricks.Div,
         this.getMainPropsToPass(),
-        external___amd___react___commonjs___react___commonjs2___react___root___react___default.a.createElement(
-          external___amd___uu5g04___commonjs___uu5g04___commonjs2___uu5g04___root___uu5g04___default.a.Bricks.Button,
-          { onClick: this._addColumn, colorSchema: "success" },
-          "Add Column"
-        ),
         external___amd___react___commonjs___react___commonjs2___react___root___react___default.a.createElement(external___amd___uu5g04___commonjs___uu5g04___commonjs2___uu5g04___root___uu5g04___default.a.Bricks.Row, { ref_: function ref_(row) {
             return _this2._row = row;
           }, dynamic: true })
@@ -1011,7 +918,7 @@ var spa = __webpack_require__("./core/spa.less");
 var spa_default = /*#__PURE__*/__webpack_require__.n(spa);
 
 // CONCATENATED MODULE: ./core/spa.js
-var spa__extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
 
 
@@ -1081,7 +988,7 @@ var Spa = external___amd___create_react_class___commonjs___create_react_class___
   render: function render() {
     return external___amd___react___commonjs___react___commonjs2___react___root___react___default.a.createElement(
       external___amd___uu_plus4u5g01___commonjs___uu_plus4u5g01___commonjs2___uu_plus4u5g01___root___uu_plus4u5g01___default.a.App.Page,
-      spa__extends({}, this.getMainPropsToPass(), {
+      _extends({}, this.getMainPropsToPass(), {
         top: external___amd___react___commonjs___react___commonjs2___react___root___react___default.a.createElement(external___amd___uu_plus4u5g01___commonjs___uu_plus4u5g01___commonjs2___uu_plus4u5g01___root___uu_plus4u5g01___default.a.App.Top, { style: { backgroundColor: "#005DA7" }, content: this.getLsiComponent("name") }),
         bottom: external___amd___react___commonjs___react___commonjs2___react___root___react___default.a.createElement(core_bottom, null),
         type: 2,
@@ -1125,4 +1032,4 @@ function index_render(targetElementId) {
 /***/ })
 
 })
-//# sourceMappingURL=0.31d5025d3860a3f911f4.hot-update.js.map
+//# sourceMappingURL=0.a6958808e1e7a1a885d2.hot-update.js.map

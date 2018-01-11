@@ -4,7 +4,7 @@ import UU5 from "uu5g04";
 import "uu5g04-bricks";
 import ns from "ns";
 
-import Column from "/home/vitya/WebstormProjects/ucl-uu5-hw/uu_demoappg01_main-client/src/bricks/item/column.js";
+import PropTypes from "prop-types";
 
 export const About = createReactClass({
   //@@viewOn:mixins
@@ -24,6 +24,7 @@ export const About = createReactClass({
   //@@viewOff:statics
 
   //@@viewOn:propTypes
+
   //@@viewOff:propTypes
 
   //@@viewOn:getDefaultProps
@@ -39,23 +40,24 @@ export const About = createReactClass({
   //@@viewOff:overridingMethods
 
   //@@viewOn:componentSpecificHelpers
-  _addColumn() {
+
+  _onSave(component, values) {
+    console.log('Values:', values);
     let id = UU5.Common.Tools.generateUUID();
 
     this._row.insertChild(
-      <Column
-        action="disabled"
-        id={id}
-        onDelete={() => {
-          this._row.deleteChild(id);
-        }}
-      />
-    );
-  },
-  _onSave(component, values) {
-    alert('Saving component (values are in console)');
-    console.log('Values:', values.name);
-    return this;
+        <UU5.Bricks.Div
+            id={id}
+        >
+            <UU5.Bricks.Panel
+                header={values.name} content={["category: ",values.category,", ","number of items: ",values.numberOfItems]} />
+            <UU5.Bricks.Button
+                colorSchema="danger"
+                onClick={() => this._row.deleteChild(id)}
+                content="Delete Column"
+            />
+        </UU5.Bricks.Div>
+    )
   },
 
   _onCancel(component) {
@@ -97,18 +99,19 @@ export const About = createReactClass({
             size="m"
             required
           >
-            <UU5.Forms.Select.Option value="Info"/>
-            <UU5.Forms.Select.Option value="Bug"/>
-            <UU5.Forms.Select.Option value="Task"/>
+            <UU5.Forms.Select.Option value="Man"/>
+            <UU5.Forms.Select.Option value="Woman"/>
+            <UU5.Forms.Select.Option value="Kids"/>
           </UU5.Forms.Select>
 
 
           <UU5.Forms.Controls  />
         </UU5.Forms.Form>
-        <UU5.Bricks.Div {...this.getMainPropsToPass()}>
-        <UU5.Bricks.Button onClick={this._addColumn} colorSchema="success">Add Column</UU5.Bricks.Button>
-        <UU5.Bricks.Row ref_={(row) => this._row = row} dynamic />
-        </UU5.Bricks.Div>
+
+          <UU5.Bricks.Div {...this.getMainPropsToPass()}>
+          <UU5.Bricks.Row ref_={row => this._row = row} dynamic />
+          </UU5.Bricks.Div>
+
       </UU5.Bricks.Container>
     );
   }
