@@ -24,7 +24,8 @@ export const About = createReactClass({
       main: ns.css("about")
     },
     calls: {
-      insert: "createItem"}
+      loadData: "loadMethod",
+      save: "createItem"}
   },
   //@@viewOff:statics
 
@@ -48,12 +49,8 @@ export const About = createReactClass({
   //@@viewOff:overridingMethods
 
   //@@viewOn:componentSpecificHelpers
-  // _loadItems(){
-  //   JSON.parse(localStorage.getItem("data"));
-  // },
 
-  _save(opt) {
-
+  _addItem(element){
     let id = UU5.Common.Tools.generateUUID();
 
     this._row.insertChild(
@@ -62,7 +59,9 @@ export const About = createReactClass({
         id={id}
       >
         <UU5.Bricks.Panel
-          header={opt.values.name} content={["category: ",opt.values.category,", ","number of items: ",opt.values.numberOfItems]} />
+          header={element.name} content={["category: ",element.category,
+          ", ","number of items: ",element.numberOfItems,", ","description: ",
+          element.description]} />
         <UU5.Forms.Checkbox
           value={false}
           label="Sold Out"
@@ -70,58 +69,97 @@ export const About = createReactClass({
         />
         <UU5.Bricks.Button
           colorSchema="danger"
-          onClick={() => this._row.deleteChild(id)}
+          onClick={() => {this._removeItem(id, element)}}
           content="Delete Column"
         />
         <UU5.Bricks.Button
           colorSchema="orange"
-          onClick={() => this._row._editItem(id)}
+          onClick={() => this._editItem(id, element)}
           content="Edit"
         />
       </UU5.Bricks.Div>
     );
+  },
+
+  _save(opt) {
+    opt.values.id = UU5.Common.Tools.generateUUID();
+
+    this._saveToStorage(opt);
+    this._addItem(opt.values);
+    this.reset()
+  },
+
+  _editItem(id,element){
+
+  },
+
+  _removeItem(id, element){
+
+    var opt = JSON.parse(localStorage.getItem("items"));
+
+    console.log(opt);
+    var index;
+
+    opt.map((value) => {
+      if (value.id == element.id){
+        index = opt.indexOf(value);
+      }
+    });
+    opt.splice(index, 1);
+
+    localStorage.setItem("items", JSON.stringify(opt));
+
+    console.log(opt);
+
+    this._row.deleteChild(id);
+  },
+
+
+  _saveToStorage(opt){
     var users = JSON.parse(localStorage.getItem("items") || "[]");
 
     users.push(opt.values);
 
     localStorage.setItem("items", JSON.stringify(users));
-    this.reset()
   },
 
-  _editItem(id){
-    console.log(id)
-  },
 
   _loadItems(){
-    let opt = JSON.parse(localStorage.getItem("items"));
 
-    console.log(opt.for(key,value));
-    let id = UU5.Common.Tools.generateUUID();
+    var opt = JSON.parse(localStorage.getItem("items") || "[]");
 
-    this._row.insertChild(
+    console.log(opt);
 
-      <UU5.Bricks.Div
-        id={id}
-      >
-        <UU5.Bricks.Panel
-          header={opt.values.name} content={["category: ",opt.values.category,", ","number of items: ",opt.values.numberOfItems]} />
-        <UU5.Forms.Checkbox
-          value={false}
-          label="Sold Out"
-          size="m"
-        />
-        <UU5.Bricks.Button
-          colorSchema="danger"
-          onClick={() => this._row.deleteChild(id)}
-          content="Delete Column"
-        />
-        <UU5.Bricks.Button
-          colorSchema="orange"
-          onClick={() => this._row._editItem(id)}
-          content="Edit"
-        />
-      </UU5.Bricks.Div>
-    );
+    return opt.map((element) => {
+
+         let id = UU5.Common.Tools.generateUUID();
+         let key = UU5.Common.Tools.generateUUID();
+      return(
+        <UU5.Bricks.Div
+          id={id} key={key}
+        >
+          <UU5.Bricks.Panel
+            header={element.name} content={["category: ",element.category,
+            ", ","number of items: ",element.numberOfItems,", ","description: ",
+            element.description]} />
+          <UU5.Forms.Checkbox
+            value={false}
+            label="Sold Out"
+            size="m"
+          />
+          <UU5.Bricks.Button
+            colorSchema="danger"
+            onClick={() => {this._removeItem(id, element)}}
+            content="Delete Column"
+          />
+          <UU5.Bricks.Button
+            colorSchema="orange"
+            onClick={() => this._editItem(id, element)}
+            content="Edit"
+          />
+        </UU5.Bricks.Div>
+    )
+    });
 
   },
 
@@ -164,19 +202,31 @@ export const About = createReactClass({
               <UU5.Forms.Select.Option value="Kids"/>
             </UU5.Forms.Select>
 
+            <UU5.Forms.TextArea
+              label='Description'
+              placeholder='Insert text here.'
+              feedback="success"
+              name="description"
+              message="success message"
+              required
+              size="m"
+            />
+
           </UU5.Bricks.Column>
           <UU5.Forms.Controls />
         </UU5.Forms.Form>
 
         <UU5.Bricks.ButtonGroup size="m" colorSchema="default">
-          <UU5.Bricks.Button content="Man" onClick={() => this._loadItems()} />
+          <UU5.Bricks.Button content="Man" />
           <UU5.Bricks.Button content="Woman"/>
           <UU5.Bricks.Button content="Kids"/>
         </UU5.Bricks.ButtonGroup>
 
 
         <UU5.Bricks.Div >
-          <UU5.Bricks.Row ref_={row => this._row = row} dynamic />
+          <UU5.Bricks.Row ref_={row => this._row = row} dynamic >
+            {this._loadItems()}
+          </UU5.Bricks.Row>
         </UU5.Bricks.Div>
 
       </UU5.Bricks.Container>

@@ -26,6 +26,10 @@ let Calls = {
     setTimeout(() => dtoIn.done(_getItems()), _getRandomResponseTime());
   },
 
+  loadMethod(){
+    return _getItems;
+  },
+
   createItem(dtoIn) {
     setTimeout(() => {
       let items = _getItems();
